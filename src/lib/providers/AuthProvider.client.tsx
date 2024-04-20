@@ -26,7 +26,7 @@ export function AuthProviderClient({
   // listen for token changes
   // call setUser and write new token as a cookie
   useEffect(() => {
-    return firebaseClient.onAuthStateChanged(async (user) => {
+    const unsub = firebaseClient.onAuthStateChanged(async (user) => {
       if (!user) {
         setUser(null);
       } else {
@@ -34,6 +34,8 @@ export function AuthProviderClient({
       }
       router.refresh();
     });
+
+    return () => unsub();
   }, [setUser]);
 
   // force refresh the token every 10 minutes

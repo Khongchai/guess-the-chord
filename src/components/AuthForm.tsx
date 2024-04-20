@@ -3,6 +3,7 @@
 import { firebaseClient } from "@/lib/firebase-client/instance";
 import { Button } from "./Button";
 import { Logo } from "./Logo";
+import { useAuth } from "@/lib/providers/AuthProvider.client";
 
 export const AuthForm = () => {
   return (
